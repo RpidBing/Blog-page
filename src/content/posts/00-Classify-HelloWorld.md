@@ -9,3 +9,5 @@ isPublish: true
 ## Hello World
 
 >在我的Blog中，我都会以 **"分类-名字[Classify-Name]"** 的形式去对文章进行命名
+
+export const prerender = true;
