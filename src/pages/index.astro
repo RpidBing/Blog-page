@@ -15,43 +15,16 @@ import projects from "@/data/projects";
 const posts = (await getCollection("posts")).sort(function (first, second) {
   return second.data.publishedAt.getTime() - first.data.publishedAt.getTime();
 });
+
+const shouldRenderArticle = false; // 控制是否渲染article的变量 
 ---
 
 <Layout>
   <main class="flex flex-col gap-20">
-    <article
-      class="flex flex-col gap-8 md:flex-row-reverse md:justify-end md:gap-12"
-    >
-      {
-        presentation.profile && (
-          <Image
-            src={presentation.profile}
-            class="w-1/4 self-center rounded-full"
-            alt="Your Profile"
-            width="200"
-            height="200"
-          />
-        )
-      }
-
-      <div class="flex flex-col gap-8">
-        <h1 class="text-3xl text-neutral-100">
-          {presentation.title}
-        </h1>
-
-        <h2
-          class="w-auto max-w-[60ch] leading-6"
-          set:html={convertAsteriskToStrongTag(presentation.description)}
-        />
-
-        <SocialLinks />
-      </div>
-    </article>
-
     <article class="flex flex-col gap-8">
       <header class="flex w-full flex-row justify-between gap-2">
-        <h3 class="text-lg text-neutral-100">Latest posts</h3>
-        <Link href="/posts" label="See all posts" isUnderline target="_self" />
+        <h3 class="text-lg text-neutral-100">最新文章 Latest posts</h3>
+        <Link href="/posts" label="所有文章 See all posts" isUnderline target="_self" />
       </header>
       {posts.length === 0 && <p>Soon, stay connected 👀...</p>}
 
@@ -72,26 +45,33 @@ const posts = (await getCollection("posts")).sort(function (first, second) {
       </section>
     </article>
 
+    <!-- 可控制ProJect板块，将静态变量改为ture时即可显示 -->
+    {shouldRenderArticle && (  
+      <article class="flex flex-col gap-8">  
+        <header class="flex w-full flex-row justify-between gap-2">  
+          <h3 class="text-lg text-neutral-100">  
+            Selected projects ({projects.length})  
+          </h3>  
+        </header>  
+        {projects.length === 0 && <p>Oops, I must work^^^^^</p>}  
+    
+        <section class="flex flex-col gap-4">  
+          {  
+            projects.length !== 0 &&  
+              projects.map((project) => <ProjectCard {...project} />)  
+          }  
+        </section>  
+      </article>  
+    )}
+    
+
     <article class="flex flex-col gap-8">
       <header class="flex w-full flex-row justify-between gap-2">
-        <h3 class="text-lg text-neutral-100">
-          Selected projects ({projects.length})
-        </h3>
+        <h3 class="text-lg text-neutral-100">快找到我！ Get in touch</h3>
       </header>
-      {projects.length === 0 && <p>Oops, I must work^^^^^</p>}
 
-      <section class="flex flex-col gap-4">
-        {
-          projects.length !== 0 &&
-            projects.map((project) => <ProjectCard {...project} />)
-        }
-      </section>
-    </article>
+      <SocialLinks />
 
-    <article class="flex flex-col gap-8">
-      <header class="flex w-full flex-row justify-between gap-2">
-        <h3 class="text-lg text-neutral-100">Get in touch</h3>
-      </header>
       <p>
         Email me at <Link
           href={`mailto:${presentation.mail}`}
@@ -99,7 +79,6 @@ const posts = (await getCollection("posts")).sort(function (first, second) {
         /> or follow me via my social links.
       </p>
 
-      <SocialLinks />
     </article>
   </main>
 </Layout>

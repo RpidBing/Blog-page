@@ -6,9 +6,9 @@ const pathname = removeTrailingSlash(Astro.url.pathname);
 ---
 
 <header class="z-40 flex w-full flex-col gap-2 md:flex-row md:justify-between">
-  <a href={`mailto:${presentation.mail}`} class="hover:text-neutral-100"
-    >{presentation.mail}</a
-  >
+  <h1 class="text-4xl text-neutral-100">
+    {presentation.name}
+  </h1>
 
   <nav role="navigation">
     <ul role="list" class="flex flex-row gap-2">
@@ -18,7 +18,7 @@ const pathname = removeTrailingSlash(Astro.url.pathname);
           class:list={{
             ["hover:text-neutral-100"]: true,
             ["text-neutral-100"]: pathname === "/",
-          }}>Home</a
+          }}>主页 Home</a
         >
       </li>
       <li>/</li>
@@ -28,7 +28,17 @@ const pathname = removeTrailingSlash(Astro.url.pathname);
           class:list={{
             ["hover:text-neutral-100"]: true,
             ["text-neutral-100"]: pathname === "/posts",
-          }}>Posts</a
+          }}>文章 Posts</a
+        >
+      </li>
+      <li>/</li>
+      <li>
+        <a
+          href="/about"
+          class:list={{
+            ["hover:text-neutral-100"]: true,
+            ["text-neutral-100"]: pathname === "/about",
+          }}>是我！ About</a
         >
       </li>
     </ul>

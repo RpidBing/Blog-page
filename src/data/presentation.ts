@@ -4,6 +4,7 @@ type Social = {
 };
 
 type Presentation = {
+  name: string;
   mail: string;
   title: string;
   description: string;
@@ -12,23 +13,16 @@ type Presentation = {
 };
 
 const presentation: Presentation = {
-  mail: "maxencewolff.pro@gmail.com",
-  title: "Hi, I’m Maxence 👋",
-  // profile: "/profile.webp",
+  name: "Red Pie",
+  mail: "rpidbing2728.com",
+  title: "Hello,I'm not a Red Pie [੭ ᐕ)੭*⁾⁾]",
+  profile: "/ZhaoCai.webp",
   description:
-    "Bonjour, i'm a *french frontend developer* with over *3 years* of web experience. I am currently working with *NextJS and Typescript*. Outside of work I complete my pokemon card collection and learning TypeScript.",
+    "Nice to meet you, I am *Red Pie*, My profile picture is my cute cat named *招财[ ZhaoCai ]*. I am working hard to become an *IOT developer*, thank you for your visit.",
   socials: [
     {
-      label: "X",
-      link: "https://twitter.com/itsstormzz_",
-    },
-    {
-      label: "Bento",
-      link: "https://bento.me/m-wolff",
-    },
-    {
       label: "Github",
-      link: "https://github.com/MaeWolff",
+      link: "https://github.com/RpidBing",
     },
   ],
 };
